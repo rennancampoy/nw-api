@@ -3,8 +3,8 @@ import { join } from 'path'
 import * as cookieParser from 'cookie-parser'
 import * as logger from 'morgan'
 import * as doteenv from 'dotenv'
-import startServer from './bin/www'
 
+import startServer from './bin/www'
 import indexRouter from './routes/index'
 import usersRouter from './routes/users'
 

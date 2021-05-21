@@ -1,9 +1,4 @@
 import { Express } from 'express'
-
-/**
- * Module dependencies.
- */
-
 import { createServer, Server } from 'http'
 import debug from 'debug'
 
