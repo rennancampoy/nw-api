@@ -4,9 +4,8 @@ import * as cookieParser from 'cookie-parser'
 import * as logger from 'morgan'
 import * as doteenv from 'dotenv'
 
-import startServer from './bin/www'
-import indexRouter from './routes/index'
-import usersRouter from './routes/users'
+import { ServerService } from './services/ServerService'
+import messageRouter from './routes/message'
 
 const app: express.Express = express()
 
@@ -16,11 +15,10 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(join(__dirname, 'public')))
 
-app.use('/', indexRouter)
-app.use('/users', usersRouter)
+app.use('/message', messageRouter)
 
 doteenv.config()
 
-startServer(app)
+ServerService.init(app)
 
 export default app
