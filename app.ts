@@ -6,6 +6,7 @@ import * as doteenv from 'dotenv'
 
 import { ServerService } from './services/ServerService'
 import messageRouter from './routes/message'
+import { DatabaseService } from './services/DatabaseService'
 
 const app: express.Express = express()
 
@@ -20,5 +21,9 @@ app.use('/message', messageRouter)
 doteenv.config()
 
 ServerService.init(app)
+
+const databaseService: DatabaseService = new DatabaseService()
+
+databaseService.init()
 
 export default app

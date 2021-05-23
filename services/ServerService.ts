@@ -11,7 +11,7 @@ export class ServerService {
   
   private static startServer = (app: Express) => {
 
-    const port: PortType = ServerService.normalizePort(process.env.PORT || '3000')
+    const port: PortType = ServerService.normalizePort(process.env.PORT)
   
     /**
      * Get port from environment and store in Express.
