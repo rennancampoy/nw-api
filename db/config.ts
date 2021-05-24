@@ -1,7 +1,8 @@
-import { Dialect, Options } from 'sequelize'
 import 'dotenv/config'
+import { SequelizeOptions } from 'sequelize-typescript'
+import { Dialect } from 'sequelize/types'
 
-export const getOption = (prefix: string): Options => {
+export const getOption = (prefix: string): SequelizeOptions => {
   return {
     database: process.env[`${prefix}_DB_DATABASE`],
     host: process.env[`${prefix}_DB_HOST`],
@@ -10,7 +11,7 @@ export const getOption = (prefix: string): Options => {
     password: process.env[`${prefix}_DB_PASSWORD`],
     dialect: process.env[`${prefix}_DB_DIALECT`] as Dialect,
     logging: process.env[`${prefix}_DB_LOGGING`] === 'true'
-      ? console.log 
+      ? console.log
       : false,
   }
 }

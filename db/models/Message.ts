@@ -1,47 +1,35 @@
-import { Model, DataTypes, Sequelize, BuildOptions } from 'sequelize';
+import { AllowNull, Column, Model, NotEmpty, Table } from "sequelize-typescript"
+import { Optional } from 'sequelize/types'
 
-interface Message extends Model {
-  readonly id: string
+interface IMessage {
+  id?: number
   from: string
   target_id: string
   media: boolean
   message: string
-  created_at: Date
-  updated_at: Date
 }
 
-type MessageStatic = typeof Model & {
-  new (values?: Partial<Message>, options?: BuildOptions): Message
-}
+interface IMessageCreation extends Optional<IMessage, 'id'> {}
 
-export function build(sequelize: Sequelize) {
-  const message = sequelize.define('message', {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull: false,
-      primaryKey: true,
-    },
-    from: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    target_id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    media: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-    },
-    message: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
-  }, {
-    timestamps: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-  }) as MessageStatic
-  return message
+@Table
+export class Message extends Model<IMessageCreation, IMessage> implements IMessage {
+  @AllowNull(false)
+  @NotEmpty
+  @Column
+  from: string
+
+  @AllowNull(false)
+  @NotEmpty
+  @Column
+  target_id: string
+
+  @AllowNull(false)
+  @NotEmpty
+  @Column
+  media: boolean
+
+  @AllowNull(false)
+  @NotEmpty
+  @Column
+  message: string
 }

@@ -5,11 +5,11 @@ import debug from 'debug'
 type PortType = number | string | false
 
 export class ServerService {
-  static init = (app: Express) => {
-    ServerService.startServer(app)
+  init = (app: Express) => {
+    this.startServer(app)
   }
   
-  private static startServer = (app: Express) => {
+  private startServer = (app: Express) => {
 
     const port: PortType = ServerService.normalizePort(process.env.PORT)
   
