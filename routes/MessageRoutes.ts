@@ -1,19 +1,19 @@
 import { Router } from 'express'
-import { Message } from '../db/models/Message'
+import { messageController } from '../app';
 
 export default Router()
   .post('/', async (req, res) => {
-    console.log(req.params)
-    // await Message.build({
-    //   from: '1234',
-    //   target_id: '4321',
-    //   media: true,
-    //   message: 'Teste'
-    // }).save()
+    const { from, target_id, media, message } = req.body
 
-    // res.send(JSON.stringify({ messages: await Message.findAll() }, undefined, 4))
-  })
-  .get('/test', function(_, res) {
-    res.send('respond with a resource')
-  })
+    if (!from || !target_id || !media || !message)
+      return res.status(400).json({ error: 'Invalid parameters' })
 
+    res.send(
+      JSON.stringify(
+        await messageController.newMessage(req.body), undefined, 4
+      )
+    )
+  })
+  .get('/', function(_, res) {
+    // list the messages
+  })

@@ -1,7 +1,7 @@
 import { AllowNull, Column, Model, NotEmpty, Table } from "sequelize-typescript"
 import { Optional } from 'sequelize/types'
 
-interface IMessage {
+export type TMessage = {
   id?: number
   from: string
   target_id: string
@@ -9,10 +9,10 @@ interface IMessage {
   message: string
 }
 
-interface IMessageCreation extends Optional<IMessage, 'id'> {}
+interface IMessageCreation extends Optional<TMessage, 'id'> {}
 
 @Table
-export class Message extends Model<IMessageCreation, IMessage> implements IMessage {
+export class Message extends Model<IMessageCreation, TMessage> implements TMessage {
   @AllowNull(false)
   @NotEmpty
   @Column
