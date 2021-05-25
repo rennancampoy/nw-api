@@ -5,7 +5,6 @@ import doteenv from 'dotenv'
 import path from 'path'
 import { createEngine } from 'express-react-views'
 
-
 import { ServerService } from './services/ServerService'
 import messageRouter from './routes/MessageRoutes'
 import { DatabaseService } from './services/DatabaseService'
@@ -25,7 +24,6 @@ app.set('view engine', 'jsx')
 app.engine('jsx', createEngine())
 
 doteenv.config()
-
 
 export const serverService: ServerService = new ServerService()
 serverService.init(app)
