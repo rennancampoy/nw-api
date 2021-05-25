@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
+		"jsx": "react",
     "noImplicitAny": false,
-    "noEmitOnError": true,
+    "noEmitOnError": false,
     "removeComments": false,
     "sourceMap": true,
     "target": "es6",
@@ -9,6 +10,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "esModuleInterop": true,
   },
 }
