@@ -6,7 +6,6 @@
   "scripts": {
     "clean": "rimraf dist/",
     "copy-files": "copyfiles -u 1 ./views/*.* dist/views/",
-    "build": "yarn clean && tsc && yarn copy-files",
     "start": "npm run clean && tsc && npm run copy-files && node --es-module-specifier-resolution=node ./dist/app.js"
   },
   "dependencies": {
