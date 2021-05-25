@@ -1,23 +1,26 @@
 import { Sequelize } from 'sequelize-typescript'
-import { DestroyOptions } from 'sequelize'
-import { getOption } from '../db/config'
+import { getSequelizeOption } from '../db/config'
 import { Message } from '../db/models/Message'
-import { truncate } from 'fs'
 
 export class DatabaseService {
-	private database: Sequelize
+	private sequelize: Sequelize
 
-	init = async () => {
+	private initSequelize = async () => {
 		try {
-			this.database = new Sequelize(getOption(process.env.ENV))
-			
-			await this.database.authenticate()
-
-			await this.database.sync({force: true})
-
-			this.database.addModels([Message])
+			this.sequelize = new Sequelize(getSequelizeOption(process.env.ENV))	
+			await this.sequelize.authenticate()
+			await this.sequelize.sync({force: true})
+			this.sequelize.addModels([Message])
 		} catch (error) {
 			console.error('Unable to connect to the database:', error)
 		}
+	}
+
+	private initMongoose = async () => {
+	}
+
+	init = async () => {
+		this.initSequelize()
+		this.initMongoose()
 	} 
 }
