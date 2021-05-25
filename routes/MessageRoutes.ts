@@ -26,5 +26,5 @@ export default Router()
   .get('/', async (_, res) => {
     const messages: TMessage[] = await messageController.allMessages()
 
-    res.render('messages', { messages: messages })
+    res.render('MessagesPage', { messages: messages })
   })
