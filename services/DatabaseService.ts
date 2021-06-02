@@ -9,8 +9,8 @@ export class DatabaseService {
 		try {
 			this.sequelize = new Sequelize(getSequelizeOption(process.env.ENV))	
 			await this.sequelize.authenticate()
-			await this.sequelize.sync({force: true})
 			this.sequelize.addModels([Message])
+			await this.sequelize.sync()
 		} catch (error) {
 			console.error('Unable to connect to the database:', error)
 		}
